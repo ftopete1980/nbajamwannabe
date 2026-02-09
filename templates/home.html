@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section>
+  <h2>Available Events</h2>
+  {% if events %}
+    <ul>
+      {% for event in events %}
+        <li>
+          <strong>{{ event['name'] }}</strong>
+          — <a href="{{ url_for('event_capture', slug=event['slug']) }}">Guest Upload</a>
+          — <a href="{{ url_for('event_display', slug=event['slug']) }}">Live Slideshow</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No events yet. Admin can create one first.</p>
+  {% endif %}
+</section>
+{% endblock %}

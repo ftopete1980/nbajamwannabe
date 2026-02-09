@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+<form method="post" class="card">
+  <h3>Create Event</h3>
+  <label>Event name
+    <input type="text" name="name" required placeholder="ACME Holiday Party">
+  </label>
+  <button type="submit">Create</button>
+</form>
+
+<h3>Events</h3>
+{% if events %}
+<table>
+  <tr><th>Name</th><th>Customer URL</th><th>Display URL</th><th>Manage</th></tr>
+  {% for event in events %}
+  <tr>
+    <td>{{ event['name'] }}</td>
+    <td><code>{{ base_url }}{{ url_for('event_capture', slug=event['slug']) }}</code></td>
+    <td><code>{{ base_url }}{{ url_for('event_display', slug=event['slug']) }}</code></td>
+    <td><a href="{{ url_for('admin_event', slug=event['slug']) }}">Bulk upload</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No events yet.</p>
+{% endif %}
+{% endblock %}

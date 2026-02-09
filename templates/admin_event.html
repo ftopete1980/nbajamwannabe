@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2>Manage Event: {{ event['name'] }}</h2>
+<p><a href="{{ url_for('event_capture', slug=event['slug']) }}">Guest URL</a> | <a href="{{ url_for('event_display', slug=event['slug']) }}">Display URL</a></p>
+
+<form method="post" enctype="multipart/form-data" class="card">
+  <h3>Bulk Upload Photos</h3>
+  <input type="file" name="photos" accept="image/*" multiple required>
+  <button type="submit">Upload</button>
+</form>
+
+<h3>Current Photos ({{ photos|length }})</h3>
+<div class="grid">
+  {% for photo in photos %}
+    <img src="{{ url_for('uploads', slug=event['slug'], filename=photo['filename']) }}" alt="photo">
+  {% endfor %}
+</div>
+{% endblock %}

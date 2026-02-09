@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+photo_booth.db
+uploads/*
+!uploads/.gitkeep

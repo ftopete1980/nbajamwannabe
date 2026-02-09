@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="card">
+  <h2>{{ event['name'] }}</h2>
+  <p>Tap below to take/upload a photo for this event.</p>
+  <form method="post" enctype="multipart/form-data">
+    <input type="file" name="photo" accept="image/*" capture="environment" required>
+    <button type="submit">Take a Picture</button>
+  </form>
+  <p>Total uploads so far: <strong>{{ photos_count }}</strong></p>
+</section>
+{% endblock %}
