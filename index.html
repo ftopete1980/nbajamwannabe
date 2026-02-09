@@ -19,6 +19,9 @@
     canvas {
       display: block;
       margin: 0 auto;
+      width: min(960px, 100vw);
+      height: auto;
+      max-height: 100vh;
       background: radial-gradient(circle at 30% 20%, #203566, #0d142e 60%, #090d1e 100%);
       border: 6px solid #f9f9f9;
       box-shadow: 0 0 20px rgba(255, 93, 0, 0.4);
@@ -172,15 +175,6 @@
         targetSpot: { x, y },
       };
     }
-
-    function resize() {
-      const scale = Math.min(window.innerWidth / 960, window.innerHeight / 600);
-      canvas.style.transform = `scale(${Math.min(1, scale)})`;
-      canvas.style.transformOrigin = "top center";
-    }
-
-    window.addEventListener("resize", resize);
-    resize();
 
     window.addEventListener("keydown", (event) => {
       const key = event.key.toLowerCase();
