@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ event['name'] }} Slideshow</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="display-body">
+  <h1>{{ event['name'] }} Slideshow</h1>
+  {% if photos %}
+  <div class="slideshow">
+    {% for photo in photos %}
+      <img class="slide {% if loop.first %}active{% endif %}" src="{{ url_for('uploads', slug=event['slug'], filename=photo['filename']) }}" alt="photo {{ loop.index }}">
+    {% endfor %}
+  </div>
+  {% else %}
+    <p>No photos yet.</p>
+  {% endif %}
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let index = 0;
+  if (slides.length > 1) {
+    setInterval(() => {
+      slides[index].classList.remove('active');
+      index = (index + 1) % slides.length;
+      slides[index].classList.add('active');
+    }, 3000);
+  }
+
+  setTimeout(() => location.reload(), 15000);
+</script>
+</body>
+</html>
